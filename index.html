@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-        /* Fondo (fondo.png) */
+        /* Fondo optimizado */
         .background {
             position: fixed;
             top: 0;
@@ -33,23 +33,26 @@
             background-size: cover;
             z-index: 1;
             filter: brightness(0.4);
+            -webkit-filter: brightness(0.4);
         }
 
-        /* Logo 31HATS - Más grande (90px) */
+        /* Logo superior */
         .brand-logo {
             position: fixed;
             top: 30px;
             right: 25px;
-            width: 90px; 
+            width: 80px; 
+            height: auto;
             z-index: 100;
         }
 
-        /* Gorra (gorra.jpeg) - 2 niveles más arriba */
+        /* Contenedor de la gorra (Tamaño 85%) */
         .product-container {
             position: absolute;
-            top: 35%; /* Subido de 40% a 35% */
+            top: 40%; 
             left: 50%;
             transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             z-index: 2;
             width: 100%;
             display: flex;
@@ -57,66 +60,66 @@
         }
 
         .product-img {
-            width: 85%;
-            max-width: 380px;
+            width: 85%; 
+            max-width: 400px; 
             height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+            -webkit-filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
         }
 
-        /* Panel Gris - Más transparente */
+        /* Panel inferior con desenfoque compatible */
         .bottom-container {
             position: absolute;
             bottom: 40px;
             z-index: 10;
-            width: 90%;
-            max-width: 360px;
-            /* Mayor transparencia: de 0.15 a 0.08 */
+            width: 88%;
+            max-width: 350px;
             background: rgba(255, 255, 255, 0.08); 
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); 
             border-radius: 25px;
-            padding: 25px 15px;
+            padding: 22px 15px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Letras más blancas y gruesas (Bold) */
         .auth-text {
             color: #ffffff;
-            font-size: 19px;
-            font-weight: 800; /* Letra más gruesa */
+            font-size: 18px;
+            font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: 0.5px;
         }
 
         .seal-img {
-            width: 75px;
+            width: 70px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            display: inline-block;
         }
 
         .scan-text {
             color: #ffffff;
-            font-size: 17px;
-            font-weight: 700; /* Más gruesa */
-            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 18px;
         }
 
-        /* Botón "About ThirtyOne" */
         .btn-about {
             display: block;
             background-color: #000000;
             color: #ffffff;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 800; /* Letra más gruesa */
-            padding: 14px 0;
+            font-size: 17px;
+            font-weight: 800;
+            padding: 12px 0;
             border-radius: 12px;
-            width: 90%;
+            width: 85%;
             margin: 0 auto;
             border: 1px solid rgba(255,255,255,0.05);
         }
-
     </style>
 </head>
 <body>
@@ -141,15 +144,22 @@
 
     <script>
         function updateCounter() {
-            let count = localStorage.getItem('31_verifications');
-            if (count === null) {
-                count = 1;
-            } else {
-                count = parseInt(count) + 1;
+            // Clave actualizada a v99
+            const STORAGE_KEY = 'v99';
+            try {
+                let count = localStorage.getItem(STORAGE_KEY);
+                if (count === null) {
+                    count = 1;
+                } else {
+                    count = parseInt(count) + 1;
+                }
+                localStorage.setItem(STORAGE_KEY, count);
+                document.getElementById('counter').innerText = count;
+            } catch (e) {
+                console.warn("LocalStorage no disponible");
             }
-            localStorage.setItem('31_verifications', count);
-            document.getElementById('counter').innerText = count;
         }
+        
         window.onload = updateCounter;
     </script>
 
