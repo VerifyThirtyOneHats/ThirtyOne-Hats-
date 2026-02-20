@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>31HATS | Verification</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Fondo (fondo.png) */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fondo.png') no-repeat center center;
+            background-size: cover;
+            z-index: 1;
+            filter: brightness(0.4);
+        }
+
+        /* Logo 31HATS - Más grande (90px) */
+        .brand-logo {
+            position: fixed;
+            top: 30px;
+            right: 25px;
+            width: 90px; 
+            z-index: 100;
+        }
+
+        /* Gorra (gorra.jpeg) - 2 niveles más arriba */
+        .product-container {
+            position: absolute;
+            top: 35%; /* Subido de 40% a 35% */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .product-img {
+            width: 85%;
+            max-width: 380px;
+            height: auto;
+        }
+
+        /* Panel Gris - Más transparente */
+        .bottom-container {
+            position: absolute;
+            bottom: 40px;
+            z-index: 10;
+            width: 90%;
+            max-width: 360px;
+            /* Mayor transparencia: de 0.15 a 0.08 */
+            background: rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 25px 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Letras más blancas y gruesas (Bold) */
+        .auth-text {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 800; /* Letra más gruesa */
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .seal-img {
+            width: 75px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .scan-text {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700; /* Más gruesa */
+            margin-bottom: 20px;
+        }
+
+        /* Botón "About ThirtyOne" */
+        .btn-about {
+            display: block;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 800; /* Letra más gruesa */
+            padding: 14px 0;
+            border-radius: 12px;
+            width: 90%;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="background"></div>
+    
+    <img src="31hats.png" alt="Logo" class="brand-logo">
+
+    <div class="product-container">
+        <img src="gorra.jpeg" alt="Product" class="product-img">
+    </div>
+
+    <div class="bottom-container">
+        <div class="auth-text">Authentic ThirtyOne<br>Product</div>
+        
+        <img src="logoo.png" alt="Certified" class="seal-img">
+        
+        <div class="scan-text">Scan Count: <span id="counter">1</span></div>
+        
+        <a href="#" class="btn-about">About ThirtyOne</a>
+    </div>
+
+    <script>
+        function updateCounter() {
+            let count = localStorage.getItem('31_verifications');
+            if (count === null) {
+                count = 1;
+            } else {
+                count = parseInt(count) + 1;
+            }
+            localStorage.setItem('31_verifications', count);
+            document.getElementById('counter').innerText = count;
+        }
+        window.onload = updateCounter;
+    </script>
+
+</body>
+</html>
